@@ -1,0 +1,36 @@
+.counter-selectors {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.counter-buttom {
+  color: white;
+  background-color: #202020;
+  border-radius: 5px;
+  border-style: none;
+  padding: 10px;
+  margin: 5px 30px 5px 30px;
+}
+
+.counter-buttom:disabled {
+  background-color: #9b9b9b;
+}
+
+.counter-display {
+  font-weight: bold;
+  font-size: 20px;
+
+  color: #202020;
+  padding: 10px;
+  margin: 5px 30px 5px 30px;
+}
+
+.counter-add {
+  font-weight: bold;
+  color: #000000;
+  background-color: lightgray;
+  border-radius: 5px;
+  border-style: none;
+  padding: 10px;
+}
