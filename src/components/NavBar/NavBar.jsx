@@ -7,13 +7,13 @@ const NavBar = () => {
 
         <Navbar bg="dark" variant="dark">
     <Container>
-    <Navbar.Brand href="#home">Plataforma Virtual</Navbar.Brand>
+    <Navbar.Brand href="/">Plataforma Virtual</Navbar.Brand>
     <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="#speakers">Speakers</Nav.Link>
-      <Nav.Link href="#charlas">Charlas</Nav.Link>
+      <Nav.Link href="/detalle">Charlas</Nav.Link>
       <Nav.Link href="#aboutUs">Acerca de Nosotros</Nav.Link>
-      <Nav.Link href="#contacto">Contacto</Nav.Link>
+      <Nav.Link href="/cart">Contacto</Nav.Link>
     </Nav>
             <CartWidget/>
     </Container>

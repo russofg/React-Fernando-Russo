@@ -2,8 +2,9 @@ const charlaReact = { id:"01", title:"React", speaker:"Juan", description:"React
 
 const GetFetchDetail = new Promise((resolve, reject) =>{
     setTimeout(() =>{
-        resolve(charlaReact)
-    }, 2000)
+        resolve(charlaReact);
+    }, 2000);
+    
 })
 
 export default GetFetchDetail
