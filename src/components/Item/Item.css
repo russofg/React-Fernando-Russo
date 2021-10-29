@@ -12,3 +12,13 @@
 .product-title {
   margin-top: 20px;
 }
+
+.product-button {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #000000;
+  background-color: lightgray;
+  border-radius: 5px;
+  border-style: none;
+  padding: 10px;
+}

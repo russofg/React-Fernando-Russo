@@ -8,12 +8,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
-      <NavBar />
-
       <Router>
+        <NavBar />
+
         <Switch>
           <Route exact path="/" component={ItemListContainer} />
-
+          <Route path="/categoria/:id" exact component={ItemListContainer} />
           <Route exact path="/detalle/" component={ItemDetailContainer} />
           <Route exact path="/cart/" component={Cart} />
         </Switch>
