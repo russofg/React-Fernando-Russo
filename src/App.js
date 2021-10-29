@@ -13,8 +13,8 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={ItemListContainer} />
-          <Route path="/categoria/:id" exact component={ItemListContainer} />
-          <Route exact path="/detalle/" component={ItemDetailContainer} />
+          <Route exact path="/categoria/:id" component={ItemListContainer} />
+          <Route exact path="/detalle/:id" component={ItemDetailContainer} />
           <Route exact path="/cart/" component={Cart} />
         </Switch>
       </Router>

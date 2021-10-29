@@ -22,7 +22,7 @@ const ItemListContainer = () => {
         if  (id) {
             GetFetchList
             .then(response => {        
-                setProduct(response.filter(item => item.catagoria === id))
+                setProduct(response.filter(prod => prod.categoria === id))
             })
             .catch (error => console.log(error))
             .finally(()=> setLoading(false))
@@ -36,7 +36,7 @@ const ItemListContainer = () => {
         } 
         },[id])
 
-         
+         console.log(id);
 
     return (
             <div className="list-container">
