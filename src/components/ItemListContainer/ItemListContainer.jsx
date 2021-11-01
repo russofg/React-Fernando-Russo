@@ -23,7 +23,7 @@ const ItemListContainer = () => {
         if  (categoriaId) {
             GetFetchList
             .then(response => {        
-                setProduct(response.filter(prod => prod.categoria === categoriaId))
+                setProduct(response.filter(charla => charla.categoria === categoriaId))
             })
             .catch (error => alert("Error ", error))
             .finally(()=> setLoading(false))

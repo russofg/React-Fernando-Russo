@@ -21,4 +21,11 @@
   border-radius: 5px;
   border-style: none;
   padding: 10px;
+  box-shadow: 2px 2px 2px black;
+  transition: 0.2s;
+}
+.product-button:hover {
+  background-color: #242424;
+  color: lightgray;
+  transform: scale(0.95);
 }

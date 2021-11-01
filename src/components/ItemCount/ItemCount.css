@@ -33,4 +33,12 @@
   border-radius: 5px;
   border-style: none;
   padding: 10px;
+  box-shadow: 2px 2px 2px black;
+  transition: 0.2s;
+}
+.counter-add:hover {
+  background-color: #202020;
+  color: lightgray;
+  box-shadow: 4px 4px 4px black;
+  transform: scale(0.95);
 }

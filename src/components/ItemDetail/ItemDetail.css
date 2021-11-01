@@ -8,6 +8,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  background-color: #fafafa;
 }
 
 .product-detail-img {
@@ -16,8 +17,14 @@
 
 .product-detail-title,
 .product-detail-categoria,
+.product-detail-speaker,
 .product-detail-description,
 .product-detail-price {
+  text-align: left;
+  line-height: 1.2;
+  margin: 15px;
+}
+.product-detail-descripcion {
   text-align: left;
   line-height: 1.2;
   margin: 15px;
