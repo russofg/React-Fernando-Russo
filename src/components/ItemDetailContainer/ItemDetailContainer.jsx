@@ -1,19 +1,22 @@
 import {useEffect, useState} from 'react';
-import GetFetchDetail from '../../services/GetFetchDetail';
+import GetFetchList from '../../services/GetFetchList';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import './ItemDetailContainer.css';
+import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
 
     const [charla, setCharla] = useState({})
 
+    const { detalleId } = useParams();
+
     useEffect(() => {
-        GetFetchDetail
+        GetFetchList
         .then(response => {        
-            setCharla(response)
+            setCharla(response.find(prod => prod.id === detalleId))
         })
-        .catch (error => console.log(error))
-    },[])   
+        .catch (error => alert("Error ", error))
+    },[detalleId])   
 
     return (
             <div className="detail-container">

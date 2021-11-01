@@ -11,11 +11,11 @@ const NavBar = () => {
     <Container>
     <Navbar.Brand><Link className="logo" to="/">Plataforma Virtual</Link></Navbar.Brand>
     <Nav className="me-auto">
-      <Link className="links" to="/">Home</Link>
-      <Link className="links" to="/categoria/edicion">Edicion</Link>
-      <Link className="links" to="/categoria/programacion">Programación</Link>
-      <Link className="links" to="/">Acerca de Nosotros</Link>
-      <Link className="links" to="/">Contacto</Link>
+      <Nav.Link><Link className="links" to="/">Home</Link></Nav.Link>
+      <Nav.Link><Link className="links" to="/categoria/Edición">Edición</Link></Nav.Link>
+      <Nav.Link><Link className="links" to="/categoria/Programación">Programación</Link></Nav.Link>
+      <Nav.Link><Link className="links" to="/">Acerca de Nosotros</Link></Nav.Link>
+      <Nav.Link><Link className="links" to="/">Contacto</Link></Nav.Link>
     </Nav>
             <CartWidget/>
     </Container>

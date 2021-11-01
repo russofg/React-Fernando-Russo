@@ -15,16 +15,17 @@ const ItemListContainer = () => {
         },1000);
     }, []);
 
-    const {id} = useParams();
+    const {categoriaId} = useParams();
 
 
     useEffect(() => {
-        if  (id) {
+
+        if  (categoriaId) {
             GetFetchList
             .then(response => {        
-                setProduct(response.filter(prod => prod.categoria === id))
+                setProduct(response.filter(prod => prod.categoria === categoriaId))
             })
-            .catch (error => console.log(error))
+            .catch (error => alert("Error ", error))
             .finally(()=> setLoading(false))
 
         }else{
@@ -32,11 +33,11 @@ const ItemListContainer = () => {
             .then(response => {        
                 setProduct(response)
             })
-            .catch (error => console.log(error))
+            .catch (error => alert("Error ", error))
         } 
-        },[id])
+        },[categoriaId])
 
-         console.log(id);
+         console.log(categoriaId);
 
     return (
             <div className="list-container">
