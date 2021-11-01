@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Proyecto de React para Coder House
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
