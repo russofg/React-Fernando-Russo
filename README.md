@@ -9,8 +9,8 @@ Es un proyecto de una aplicación de React que se encargara de gestionar una tie
 Se utilizó
 
 [React Router](https://reacttraining.com/react-router/web/guides/quick-start) para la navegación de la aplicación.
-[React Bootstrap](https://react-bootstrap.github.io) para el manejo de los componentes de Bootstrap.
-[Bootstrap](https://getbootstrap.com/) para el manejo de los componentes de Bootstrap.
+[React Bootstrap](https://react-bootstrap.github.io) para el manejo de los componentes de Bootstrap (Nav Bar entre otras cosas).
+[Bootstrap](https://getbootstrap.com/) para el manejo de los componentes de Bootstrap (Nav Bar entre otras cosas).
 [Reactstrap](https://reactstrap.github.io/) para el manejo de los componentes de Reactstrap. (Todavia no lo use estoy viendo con cual me quedo si react-bootstrap o reactstrap)
 
 ## Available Scripts
