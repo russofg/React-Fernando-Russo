@@ -1,31 +1,35 @@
 import {useState} from 'react';
+import { Link } from 'react-router-dom';
 import './ItemCount.css';
 
-const ItemCount = ({initial, stock}) =>{
+const ItemCount = ({initial, stock, onAdd}) =>{
     
-    const [counter, setCounter] = useState(initial);
+        const [qty, setQty] = useState(initial);
+        const [cambiarBotom, setCambiarBotom] = useState(false);
     
-    const handleClick = () => {
-        if (counter < stock)
-        setCounter((stock)=> stock + 1);
-    }
-    const handleClickmenos = () => {
-        setCounter((stock)=> stock - 1);
-        if (counter === 1)
-        setCounter(counter)
-    }
-    const onAdd = () => {
-        alert(`Agregaste ${counter} unidad(es) a tu carrito`);
-    }
+        const decreaseQty = () => {
+            setQty(qty-1);     
+        }   
+        const increaseQty = () => {
+            setQty(qty+1);     
+        }
+        const handlerOnAdd = () => {
+            onAdd(qty);
+            alert(`Agregaste ${qty} unidad(es) a tu carrito`);
+            setCambiarBotom(true);
+            }
     
     return (
         <div>
             <div className="counter-selectors">
-                <button bg="dark" variant="dark " className="counter-buttom"onClick={handleClickmenos} disabled={(counter<=initial) ? true : false}>-</button>
-                <div className="counter-display">{counter}</div>
-                <button className="counter-buttom" onClick={handleClick} disabled={ (counter>=stock) ? true : false }>+</button>
+                <button bg="dark" variant="dark " className="counter-buttom"onClick={decreaseQty} disabled={(qty<=initial) ? true : false}>-</button>
+                <div className="counter-display">{qty}</div>
+                <button className="counter-buttom" onClick={increaseQty} disabled={ (qty>=stock) ? true : false }>+</button>
             </div>
-            <button className="counter-add" onClick={onAdd}>Agregar al carrito</button>
+            {cambiarBotom 
+            ? <Link to="/cart"><button className="purchase">Terminar compra</button></Link>
+            : <button className="qty-add" onClick={handlerOnAdd}>Agregar al carrito</button>
+            }
         </div>
     )
 }

@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import GetFetchList from '../../services/GetFetchList';
 import ItemList from '../ItemList/ItemList';
-
 import './ItemListContainer.css';
 
 const ItemListContainer = () => {

@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import ItemCount from '../ItemCount/ItemCount';
 import './ItemDetail.css'; 
 
 const ItemDetail = ({charla}) => {
+
+    const [qty, setQty] = useState (1)
+
+    const onAdd = (qtyAdded) => {
+        setQty(qtyAdded)
+    }
     
     return (
             <div className="product-detail-card" >
@@ -13,7 +20,7 @@ const ItemDetail = ({charla}) => {
                     <h6 className="product-detail-categoria">Categoria: {charla.categoria}</h6>
                     <h5 className="product-detail-price">$ {charla.price}</h5>
                 </div>
-                <ItemCount initial={1} stock={charla.stock}/>
+                <ItemCount initial={qty} stock={charla.stock} onAdd={onAdd}/>
             </div>
     )
 }
