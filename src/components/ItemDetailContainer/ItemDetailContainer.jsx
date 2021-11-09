@@ -5,8 +5,10 @@ import './ItemDetailContainer.css';
 import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
+   
 
-    const [charla, setCharla] = useState({})
+    const [charla, setCharla] = useState([])
+   
 
     const { detalleId } = useParams();
 
@@ -16,6 +18,7 @@ const ItemDetailContainer = () => {
             setCharla(response.find(prod => prod.id === detalleId))
         })
         .catch (error => alert("Error ", error))
+        
     },[detalleId])   
 
     return (

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import ItemCount from '../ItemCount/ItemCount';
+import { useCartContext } from '../../Context/CartContext';
 import './ItemDetail.css'; 
 
 const ItemDetail = ({charla}) => {
 
     const [qty, setQty] = useState (1)
+    const {addToCartList} = useCartContext();
+
 
     const onAdd = (qtyAdded) => {
         setQty(qtyAdded)
+        addToCartList({charla, qtyAdded: qtyAdded})
     }
     
     return (

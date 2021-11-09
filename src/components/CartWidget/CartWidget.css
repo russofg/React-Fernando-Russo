@@ -3,3 +3,12 @@
   border-radius: 20px;
   border-style: none;
 }
+
+.cartwidget-quantity {
+  font-size: 1.5em;
+  background-color: black;
+  border-radius: 50%;
+  font-weight: bold;
+  color: rgb(231, 2, 2);
+  margin-bottom: -15px;
+}
