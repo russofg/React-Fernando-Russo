@@ -92,3 +92,26 @@
   font-weight: bold;
   color: #000000;
 }
+.item-added-quantity {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+}
+.item-added-total {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  background-color: lightgray;
+  border-radius: 5px;
+  border-style: none;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 2px 2px 2px black;
+}
+
+.total-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

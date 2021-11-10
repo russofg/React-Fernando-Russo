@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import GetFetchList from '../../services/GetFetchList';
 import ItemList from '../ItemList/ItemList';
+import Spinner from 'react-bootstrap/Spinner';
+
 import './ItemListContainer.css';
 
 const ItemListContainer = () => {
@@ -41,7 +43,8 @@ const ItemListContainer = () => {
     return (
             <div className="list-container">
                 <h1 className ="titulo">Plataforma Virtual</h1>
-                <ItemList product={product}/>
+
+                {loading ? <Spinner className='mt-5' animation="border" variant="primary" /> : <ItemList product={product} />}
             </div>
     )
 }

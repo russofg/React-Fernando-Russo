@@ -4,19 +4,17 @@ import './CartWidget.css';
 
 const CartWidget = () => {
 
-    const {cartList} = useCartContext()
+    const {sumaCantidad} = useCartContext()
 
     return (
             <Link to="/cart" className="cartwidget-container">
-            <button className="cartwidget">
-                <p className="cartwidget-quantity">{cartList.length}</p>
-                <img src="../../assets/AddCart.png"  width="40"
-                height="40"
-                className="d-inline-block align-top"alt="Carrito"/>
-            </button>
+                <button className="cartwidget">
+                  {sumaCantidad===0? <p className= "empty">Carrito Vacio</p>: <><p className="no-empty">{sumaCantidad}</p><img src="../../assets/AddCart.png"  width="40"
+                        height="40"
+                        className="d-inline-block align-top"alt="Carrito"/></>}
+                
+                </button>
             </Link>
-
-
     )
 }
 

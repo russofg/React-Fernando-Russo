@@ -11,7 +11,7 @@ const ItemDetail = ({charla}) => {
 
     const onAdd = (qtyAdded) => {
         setQty(qtyAdded)
-        addToCartList({charla, qtyAdded: qtyAdded})
+        addToCartList({charla, qty: qtyAdded})
     }
     
     return (

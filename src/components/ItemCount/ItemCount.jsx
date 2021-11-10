@@ -16,7 +16,6 @@ const ItemCount = ({initial, stock, onAdd}) =>{
         const handlerOnAdd = () => {
             onAdd(qty);
             setQty(initial);
-            alert(`Agregaste ${qty} unidad(es) a tu carrito`);
             setCambiarBotom(true);
             }
     

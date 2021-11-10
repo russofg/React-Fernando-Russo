@@ -4,11 +4,20 @@
   border-style: none;
 }
 
-.cartwidget-quantity {
-  font-size: 1.5em;
-  background-color: black;
-  border-radius: 50%;
+.empty {
+  font-size: 15px;
+  text-align: center;
+  margin: auto;
   font-weight: bold;
-  color: rgb(231, 2, 2);
-  margin-bottom: -15px;
+  color: rgb(0, 0, 0);
+}
+.no-empty {
+  font-size: 15px;
+  background-color: blueviolet;
+  border-radius: 20px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: -5px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
 }
