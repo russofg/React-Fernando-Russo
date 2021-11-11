@@ -28,7 +28,7 @@ const Cart = () => {
                         <p className="item-added-description">{itemAdded.charla.description}</p>
                         <p className="item-added-price">$ {itemAdded.charla.price}</p>
                         <p className="item-added-quantity">Cantidad: {itemAdded.qty}</p>
-                        <p className="item-added-quantity">Total: {itemAdded.qty * itemAdded.charla.price}
+                        <p className="item-added-quantity">Total: $ {itemAdded.qty * itemAdded.charla.price}
                         </p>
                         
                     </div>
@@ -39,7 +39,7 @@ const Cart = () => {
                
             </div> 
             <div className="total-container">
-            <p className="item-added-total"> Total {precioTotal()}</p>
+            <p className="item-added-total"> Total: $ {precioTotal()}</p>
           
             </div>
       
