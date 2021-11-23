@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-//import GetFetchList from '../../services/GetFetchList';
 import ItemDetail from '../ItemDetail/ItemDetail';
 import './ItemDetailContainer.css';
 import Spinner from 'react-bootstrap/Spinner';
@@ -17,16 +16,9 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         setTimeout(()=>{
+            const dataBase = getFirestore();
 
-            // GetFetchList
-            // .then(response => {        
-            //     setCharla(response.find(prod => prod.id === detalleId))
-            // })
-            const dataBase = getFirestore()
-
-            const dataBaseQuery = dataBase.collection("items").doc(detalleId).get()
-    
-            dataBaseQuery
+            dataBase.collection("items").doc(detalleId).get()
             .then(item => setCharla({id:item.id, ...item.data()}))
 
         .catch (error => alert("Error ", error))
