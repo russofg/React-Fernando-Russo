@@ -12,6 +12,7 @@ const ItemListContainer = () => {
   const { categoriaId } = useParams();
 
   useEffect(() => {
+
     const dataBase = getFirestore();
 
     if (categoriaId) {

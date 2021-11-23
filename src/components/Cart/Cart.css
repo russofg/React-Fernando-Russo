@@ -87,7 +87,7 @@
   justify-content: center;
 }
 
-.empty-cart {
+.empty-cart .order-id {
   font-size: 20px;
   font-weight: bold;
   color: #000000;
