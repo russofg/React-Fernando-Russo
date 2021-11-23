@@ -13,9 +13,7 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Switch>
-            <Route exact path>
-              <ItemListContainer />
-            </Route>
+            <Route exact path="/" component={ItemListContainer} />
             <Route
               exact
               path="/categoria/:categoriaId"

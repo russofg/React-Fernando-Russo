@@ -1,6 +1,11 @@
 .links {
   text-decoration: none;
   color: rgb(163, 163, 163);
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0.5em;
+  margin: 0.5em;
+  
 }
 .links:hover {
   color: rgb(228, 228, 228);
