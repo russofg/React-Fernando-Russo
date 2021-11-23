@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import CartContextProvider from "./Context/CartContext";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <CartContextProvider>
-        <Router>
+        <BrowserRouter>
           <NavBar />
           <Switch>
             <Route exact path>
@@ -28,7 +28,7 @@ function App() {
             />
             <Route exact path="/cart/" component={Cart} />
           </Switch>
-        </Router>
+        </BrowserRouter>
       </CartContextProvider>
     </div>
   );

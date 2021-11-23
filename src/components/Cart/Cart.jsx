@@ -1,7 +1,7 @@
-import { useCartContext } from "../../Context/CartContext";
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useCartContext } from "../../Context/CartContext";
 import { getFirestore } from "../../services/getFirestore";
+import { Link } from "react-router-dom";
 import firebase from "firebase";
 import "firebase/firestore";
 import UserForm from "../Form/Form";
@@ -9,20 +9,21 @@ import "./Cart.css";
 
 const Cart = () => {
   const [orderId, setOrderId] = useState("");
-  const { cartList, removeItem, removeCart, precioTotal, userData } =
+  const { cartList, removeItem, removeCart, sumaTotal, userData } =
     useCartContext();
 
   const createOrder = (e) => {
     e.preventDefault();
+
     let order = {};
     order.date = firebase.firestore.Timestamp.fromDate(new Date());
     order.buyer = userData;
-    order.total = precioTotal();
-    order.items = cartList.map((charlas) => {
-        const id = charlas.id;
-        const title = charlas.title;
-        const qty = charlas.qty;
-        const price = charlas.price * charlas.qty;
+    order.total = sumaTotal;
+    order.items = cartList.map(product => {
+        const id = product.charla.id;
+        const title = product.charla.title;
+        const qty = product.qty;
+        const price = product.charla.price * product.qty;
       return {
         id, title, qty, price,
       };
@@ -32,28 +33,28 @@ const Cart = () => {
     dataBase
       .collection("orders")
       .add(order)
-      .then((response) => setOrderId(response.id))
+      .then(response => setOrderId(response.id))
       .catch((error) => alert("Error: ", error))
       .finally(() => removeCart());
 
     const updateStock = dataBase.collection("items").where(
       firebase.firestore.FieldPath.documentId(),
       "in",
-      cartList.map((response) => response.id)
+      cartList.map(response => response.charla.id)
     );
 
     const batch = dataBase.batch();
 
-    updateStock.get().then((collection) => {
-      collection.docs.forEach((docSnapshot) => {
+    updateStock.get().then(collections => {
+      collections.docs.forEach(docSnapshot => {
         batch.update(docSnapshot.ref, {
           stock:
             docSnapshot.data().stock -
-            cartList.find((items) => items.id === docSnapshot.id).qty,
+            cartList.find(items => items.charla.id === docSnapshot.id).qty,
         });
       });
 
-      batch.commit().then((res) => alert("Error:", res));
+      batch.commit().catch(res => alert("Error:", res));
     });
   };
 
@@ -61,54 +62,52 @@ const Cart = () => {
     <div className="cart">
       <h2>Cart</h2>
 
-      {cartList.length ? (
+      {cartList.length ? 
         <button className="remove-cart" onClick={() => removeCart()}>
           Vaciar carrito
         </button>
-      ) : orderId === "" ? (
+       : orderId === "" ? 
         <div>
           <p className="empty-cart">El carrito está vacío</p>
           <Link className="go-to-home" to="/">
-            {" "}
             Empeza a comprar
           </Link>
         </div>
-      ) : (
+       : 
         <div>
           <p className="empty-cart">¡Gracias por tu compra!</p>
           <p className="order-id">Tu código de operación es: {orderId}</p>
           <Link className="go-to-home" to="/">
-            {" "}
-            Ir al inicio
+            Empeza a comprar
           </Link>
         </div>
-      )}
+      }
 
       <div className="cart-container">
-        {cartList.map((itemAdded) => (
-          <div className="item-added-card" key={itemAdded.charla.id}>
+        {cartList.map((product) => (
+          <div className="item-added-card" key={product.charla.id}>
             <img
               className="item-added-img"
-              src={itemAdded.charla.pictureUrl}
-              alt={itemAdded.charla.title}
+              src={product.charla.pictureUrl}
+              alt={product.charla.title}
             />
             <div className="item-added-info">
-              <h5 className="item-added-title">{itemAdded.charla.title}</h5>
+              <h5 className="item-added-title">{product.charla.title}</h5>
               <h6 className="item-added-speaker">
-                Speaker: {itemAdded.charla.speaker}
+                Speaker: {product.charla.speaker}
               </h6>
               <p className="item-added-description">
-                {itemAdded.charla.description}
+                {product.charla.description}
               </p>
-              <p className="item-added-price">$ {itemAdded.charla.price}</p>
-              <p className="item-added-quantity">Cantidad: {itemAdded.qty}</p>
+              <p className="item-added-price">$ {product.charla.price}</p>
+              <p className="item-added-quantity">Cantidad: {product.qty}</p>
               <p className="item-added-quantity">
-                Total: $ {itemAdded.qty * itemAdded.charla.price}
+                Total: $ {product.qty * product.charla.price}
               </p>
             </div>
             <button
               className="remove-item"
-              onClick={() => removeItem(itemAdded.charla.id)}
+              onClick={() => removeItem(product.charla.id)}
             >
               Eliminar producto
             </button>
@@ -116,7 +115,7 @@ const Cart = () => {
         ))}
       </div>
       <div className="total-container">
-        <p className="item-added-total"> Total: $ {precioTotal()}</p>
+        <p className="item-added-total"> Total: $ {sumaTotal}</p>
       </div>
 
       <div className="user-form">

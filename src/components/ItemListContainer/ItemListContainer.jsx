@@ -6,14 +6,8 @@ import Spinner from "react-bootstrap/Spinner";
 import "./ItemListContainer.css";
 
 const ItemListContainer = () => {
-  const [product, setProduct] = useState([]);
+  const [itemList, setItemList] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
 
   const { categoriaId } = useParams();
 
@@ -21,31 +15,22 @@ const ItemListContainer = () => {
     const dataBase = getFirestore();
 
     if (categoriaId) {
-      const dataBaseCategoria = dataBase
-        .collection("items")
-        .where("categoria", "==", categoriaId)
-        .get();
+      const dataBaseCategoria = dataBase.collection("items").where("categoria", "==", categoriaId).get();
+
       dataBaseCategoria
-        .then((response) =>
-          setProduct(
-            response.docs.map((items) => ({ id: items.id, ...items.data() }))
+        .then((response) =>setItemList(response.docs.map(items => ({ id: items.id, ...items.data() }))
           )
         )
         .catch((error) => alert("Error ", error))
         .finally(() => setLoading(false));
     } else {
-      const dataBaseCategoria = dataBase
-        .collection("items")
-        .orderBy("categoria")
-        .get();
+      const dataBaseTotal = dataBase.collection("items").orderBy("categoria").get();
 
-      dataBaseCategoria
-        .then((response) =>
-          setProduct(
-            response.docs.map((items) => ({ id: items.id, ...items.data() }))
+      dataBaseTotal
+        .then((response) =>setItemList(response.docs.map(items => ({ id: items.id, ...items.data() }))
           )
         )
-        .catch((error) => alert("Error:", error))
+        .catch(error => alert("Error:", error))
         .finally(() => setLoading(false));
     }
   }, [categoriaId]);
@@ -54,11 +39,11 @@ const ItemListContainer = () => {
     <div className="list-container">
       <h1 className="titulo">Plataforma Virtual</h1>
 
-      {loading ? (
+      {loading ? 
         <Spinner className="mt-5" animation="border" variant="primary" />
-      ) : (
-        <ItemList product={product} />
-      )}
+       : 
+        <ItemList itemList={itemList} />
+      }
     </div>
   );
 };

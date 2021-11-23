@@ -3,8 +3,11 @@ import { createContext, useContext, useState } from "react";
 const CartContext = createContext();
 
 export const useCartContext = () => useContext(CartContext);
+
 const CartContextProvider = ({ children }) => {
+
   const [sumaCantidad, setSumaCantidad] = useState(0);
+  const [sumaTotal, setSumaTotal] = useState(0);
   const [cartList, setCartList] = useState([]);
   const [userData, setUserData] = useState({
     name: "",
@@ -15,8 +18,8 @@ const CartContextProvider = ({ children }) => {
 
   const addToCartList = (itemAdded) => {
     setSumaCantidad(sumaCantidad + itemAdded.qty);
-    const findItem = cartList.find(
-      (itemInCart) => itemInCart.charla.id === itemAdded.charla.id
+    setSumaTotal(sumaTotal + (itemAdded.qty * itemAdded.charla.price));
+    const findItem = cartList.find(itemInCart => itemInCart.charla.id === itemAdded.charla.id
     );
 
     if (findItem) {
@@ -27,27 +30,22 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  const precioTotal = () => {
-    let total = 0;
-    cartList.forEach((item) => {
-      total = total + item.charla.price * item.qty;
-    });
-    return total;
-  };
-
-  const removeItem = (idItemToRemove) => {
+  
+  const removeItem = idItemToRemove => {
     const itemToRemove = cartList.find(
-      (itemInCart) => itemInCart.charla.id === idItemToRemove
+      itemInCart => itemInCart.charla.id === idItemToRemove
     );
     setSumaCantidad(sumaCantidad - itemToRemove.qty);
+    setSumaTotal(sumaTotal - (itemToRemove.qty * itemToRemove.charla.price));
     setCartList(
       cartList.filter(
-        (itemSearched) => itemSearched.charla.id !== idItemToRemove
+        itemSearched => itemSearched.charla.id !== idItemToRemove
       )
     );
   };
   const removeCart = () => {
     setSumaCantidad(0);
+    setSumaTotal(0);
     setCartList([]);
   };
 
@@ -65,8 +63,8 @@ const CartContextProvider = ({ children }) => {
         addToCartList,
         removeItem,
         removeCart,
-        precioTotal,
         sumaCantidad,
+        sumaTotal,
         handleForm,
         userData,
       }}
@@ -76,3 +74,4 @@ const CartContextProvider = ({ children }) => {
   );
 };
 export default CartContextProvider;
+

@@ -1,13 +1,14 @@
+import { memo } from "react";
 import Item from "../Item/Item";
 import './ItemList.css';
-import { memo } from "react";
 
-const ItemList = memo(({product}) => {
+
+const ItemList = memo(({itemList}) => {
   
     
     return (
         <div className="charla-container"> {
-          product.map(items => <Item key={items.id} items={items}/>
+          itemList.map(items => <Item key={items.id} items={items}/>
             )}
         </div>
     )
