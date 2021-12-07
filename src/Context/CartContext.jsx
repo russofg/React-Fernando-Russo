@@ -5,7 +5,6 @@ const CartContext = createContext();
 export const useCartContext = () => useContext(CartContext);
 
 const CartContextProvider = ({ children }) => {
-
   const [sumaCantidad, setSumaCantidad] = useState(0);
   const [sumaTotal, setSumaTotal] = useState(0);
   const [cartList, setCartList] = useState([]);
@@ -14,12 +13,14 @@ const CartContextProvider = ({ children }) => {
     lastName: "",
     phone: "",
     email: "",
+    emailvalidation: "",
   });
 
   const addToCartList = (itemAdded) => {
     setSumaCantidad(sumaCantidad + itemAdded.qty);
-    setSumaTotal(sumaTotal + (itemAdded.qty * itemAdded.charla.price));
-    const findItem = cartList.find(itemInCart => itemInCart.charla.id === itemAdded.charla.id
+    setSumaTotal(sumaTotal + itemAdded.qty * itemAdded.charla.price);
+    const findItem = cartList.find(
+      (itemInCart) => itemInCart.charla.id === itemAdded.charla.id
     );
 
     if (findItem) {
@@ -30,16 +31,15 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  
-  const removeItem = idItemToRemove => {
+  const removeItem = (idItemToRemove) => {
     const itemToRemove = cartList.find(
-      itemInCart => itemInCart.charla.id === idItemToRemove
+      (itemInCart) => itemInCart.charla.id === idItemToRemove
     );
     setSumaCantidad(sumaCantidad - itemToRemove.qty);
-    setSumaTotal(sumaTotal - (itemToRemove.qty * itemToRemove.charla.price));
+    setSumaTotal(sumaTotal - itemToRemove.qty * itemToRemove.charla.price);
     setCartList(
       cartList.filter(
-        itemSearched => itemSearched.charla.id !== idItemToRemove
+        (itemSearched) => itemSearched.charla.id !== idItemToRemove
       )
     );
   };
@@ -74,4 +74,3 @@ const CartContextProvider = ({ children }) => {
   );
 };
 export default CartContextProvider;
-

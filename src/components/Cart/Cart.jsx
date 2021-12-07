@@ -14,18 +14,20 @@ const Cart = () => {
 
   const createOrder = (e) => {
     e.preventDefault();
-
     let order = {};
     order.date = firebase.firestore.Timestamp.fromDate(new Date());
     order.buyer = userData;
     order.total = sumaTotal;
-    order.items = cartList.map(product => {
-        const id = product.charla.id;
-        const title = product.charla.title;
-        const qty = product.qty;
-        const price = product.charla.price * product.qty;
+    order.items = cartList.map((product) => {
+      const id = product.charla.id;
+      const title = product.charla.title;
+      const qty = product.qty;
+      const price = product.charla.price * product.qty;
       return {
-        id, title, qty, price,
+        id,
+        title,
+        qty,
+        price,
       };
     });
     const dataBase = getFirestore();
@@ -33,28 +35,28 @@ const Cart = () => {
     dataBase
       .collection("orders")
       .add(order)
-      .then(response => setOrderId(response.id))
+      .then((response) => setOrderId(response.id))
       .catch((error) => alert("Error: ", error))
       .finally(() => removeCart());
 
     const updateStock = dataBase.collection("items").where(
       firebase.firestore.FieldPath.documentId(),
       "in",
-      cartList.map(response => response.charla.id)
+      cartList.map((response) => response.charla.id)
     );
 
     const batch = dataBase.batch();
 
-    updateStock.get().then(collections => {
-      collections.docs.forEach(docSnapshot => {
+    updateStock.get().then((collections) => {
+      collections.docs.forEach((docSnapshot) => {
         batch.update(docSnapshot.ref, {
           stock:
             docSnapshot.data().stock -
-            cartList.find(items => items.charla.id === docSnapshot.id).qty,
+            cartList.find((items) => items.charla.id === docSnapshot.id).qty,
         });
       });
 
-      batch.commit().catch(res => alert("Error:", res));
+      batch.commit().catch((res) => alert("Error:", res));
     });
   };
 
@@ -62,18 +64,18 @@ const Cart = () => {
     <div className="cart">
       <h2>Cart</h2>
 
-      {cartList.length ? 
+      {cartList.length ? (
         <button className="remove-cart" onClick={() => removeCart()}>
           Vaciar carrito
         </button>
-       : orderId === "" ? 
+      ) : orderId === "" ? (
         <div>
           <p className="empty-cart">El carrito está vacío</p>
           <Link className="go-to-home" to="/">
             Empeza a comprar
           </Link>
         </div>
-       : 
+      ) : (
         <div>
           <p className="empty-cart">¡Gracias por tu compra!</p>
           <p className="order-id">Tu código de operación es: {orderId}</p>
@@ -81,7 +83,7 @@ const Cart = () => {
             Empeza a comprar
           </Link>
         </div>
-      }
+      )}
 
       <div className="cart-container">
         {cartList.map((product) => (

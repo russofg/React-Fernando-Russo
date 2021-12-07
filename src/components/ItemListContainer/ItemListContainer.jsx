@@ -12,26 +12,35 @@ const ItemListContainer = () => {
   const { categoriaId } = useParams();
 
   useEffect(() => {
-
     const dataBase = getFirestore();
 
     if (categoriaId) {
-      const dataBaseCategoria = dataBase.collection("items").where("categoria", "==", categoriaId).get();
+      const dataBaseCategoria = dataBase
+        .collection("items")
+        .where("categoria", "==", categoriaId)
+        .get();
 
       dataBaseCategoria
-        .then((response) =>setItemList(response.docs.map(items => ({ id: items.id, ...items.data() }))
+        .then((response) =>
+          setItemList(
+            response.docs.map((items) => ({ id: items.id, ...items.data() }))
           )
         )
         .catch((error) => alert("Error ", error))
         .finally(() => setLoading(false));
     } else {
-      const dataBaseTotal = dataBase.collection("items").orderBy("categoria").get();
+      const dataBaseTotal = dataBase
+        .collection("items")
+        .orderBy("categoria")
+        .get();
 
       dataBaseTotal
-        .then((response) =>setItemList(response.docs.map(items => ({ id: items.id, ...items.data() }))
+        .then((response) =>
+          setItemList(
+            response.docs.map((items) => ({ id: items.id, ...items.data() }))
           )
         )
-        .catch(error => alert("Error:", error))
+        .catch((error) => alert("Error:", error))
         .finally(() => setLoading(false));
     }
   }, [categoriaId]);
@@ -40,11 +49,11 @@ const ItemListContainer = () => {
     <div className="list-container">
       <h1 className="titulo">Plataforma Virtual</h1>
 
-      {loading ? 
+      {loading ? (
         <Spinner className="mt-5" animation="border" variant="primary" />
-       : 
+      ) : (
         <ItemList itemList={itemList} />
-      }
+      )}
     </div>
   );
 };
