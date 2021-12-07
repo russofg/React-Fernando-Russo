@@ -12,8 +12,7 @@ const Cart = () => {
   const { cartList, removeItem, removeCart, sumaTotal, userData } =
     useCartContext();
 
-  const createOrder = (e) => {
-    e.preventDefault();
+  const createOrder = () => {
     let order = {};
     order.date = firebase.firestore.Timestamp.fromDate(new Date());
     order.buyer = userData;
