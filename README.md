@@ -4,6 +4,8 @@ Este proyecto es una aplicación de React para el curso de Coder House.
 
 Es un proyecto de una aplicación de React que se encargara de gestionar una tienda online al estilo Udemy donde se podría comprar charlas de programación e edición de videos. Se puede filtrar por categorías y mas adelante me gustaria poder agregar un buscador para filtar por nombre de la charla.
 
+Se puede ver una DEMO de la aplicacion en https://plataforma-virtual-v2.netlify.app/
+
 # Dependencias extras
 
 Se utilizó
